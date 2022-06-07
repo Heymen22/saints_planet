@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Online store</title>
     <link rel="stylesheet" href="{% static 'my_site/css/main.css' %}">
-    <link rel="stylesheet" href="{% static 'my_site/css/product.css' %}">
+    {% block additional_css %}
+
+    {% endblock %}
 
 </head>
 <body>
-{% block body %}
+
 <nav class="navbar"> <!--навигация-->
 
     <div class="nav">
@@ -35,380 +37,9 @@
     </ul>
 
 </nav>
+{% block main %}
 
-
-<header class="hero-section"> <!--заголовок+фон-->
-    <div class="content">
-        <img src="{% static 'my_site/img/light-logo.png' %}" class="logo" alt="">
-        <p class="sub-heading">best fashion collection of all time</p>
-    </div>
-</header>
-
-<section class="product"> <!-- cards container -->
-    <!-- СЛАЙДЕР -->
-
-    <h2 class="product-category"> Топ продаж </h2>
-    <!-- Кнопки слайдеры -->
-    <button class="pre-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <button class="nxt-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <div class="product-container">
-
-        <div class="product-card"> <!-- 1я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card1.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 2я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card2.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 3я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card3.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 4я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card4.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 5я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card5.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 6я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card6.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 7я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card7.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 8я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card8.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-<section class="collection-container"> <!-- Коллекции  -->
-    <a href="#" class="collection">
-        <img src="{% static 'my_site/img/women-collection.png' %}" alt="">
-        <p class="collection-title">Женская <br> одежда</p>
-    </a>
-    <a href="#" class="collection">
-        <img src="{% static 'my_site/img/men-collection.png' %}" alt="">
-        <p class="collection-title">Мужская <br> одежда</p>
-    </a>
-    <a href="#" class="collection">
-        <img src="{% static 'my_site/img/accessories-collection.png' %}" alt="">
-        <p class="collection-title">Аксесуары</p>
-    </a>
-</section>
-
-<section class="product"> <!-- cards container -->
-    <!-- СЛАЙДЕР -->
-
-    <h2 class="product-category">Рубашки</h2>
-    <!-- Кнопки слайдеры -->
-    <button class="pre-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <button class="nxt-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <div class="product-container">
-
-        <div class="product-card"> <!-- 1я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card1.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 2я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card2.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 3я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card3.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 4я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card4.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 5я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card5.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 6я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card6.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 7я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card7.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 8я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card8.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-    </div>
-
-
-</section>
-
-<section class="product"> <!-- cards container -->
-    <!-- СЛАЙДЕР -->
-
-    <h2 class="product-category"> Обувь </h2>
-    <!-- Кнопки слайдеры -->
-    <button class="pre-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <button class="nxt-btn"><img src="{% static 'my_site/img/arrow.png' %}" alt=""></button>
-    <div class="product-container">
-
-        <div class="product-card"> <!-- 1я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card1.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 2я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card2.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 3я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card3.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 4я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card4.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 5я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card5.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 6я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card6.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 7я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card7.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 8я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="{% static 'my_site/img/card8.png' %}" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-
+{% endblock %}
 <footer>
     <div class="footer-content">
         <img src="{% static 'my_site/img/light-logo.png' %}" class="logo" alt="">
@@ -438,6 +69,7 @@
                 <li><a href="#" class="footer-link">официальная одежда</a></li>
                 <li><a href="#" class="footer-link">спорт</a></li>
                 <li><a href="#" class="footer-link">часы</a></li>
+
             </ul>
         </div>
     </div>
@@ -469,9 +101,10 @@
 
 </footer>
 
+{% block additional_js %}
+    <script type="text/javascript" src="{% static 'my_site/js/product.js' %}"></script>
+    <script type="text/javascript" src="{% static 'my_site/js/home.js' %}"></script>
+{% endblock %}
 
-<script type="text/javascript" src="{% static 'my_site/js/product.js' %}"></script>
-<script type="text/javascript" src="{% static 'my_site/js/home.js' %}"></script>
-{% endblock body %}
 </body>
 </html>
