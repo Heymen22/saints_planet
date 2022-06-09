@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'my_site/css/catalog.css' %}">
+{% endblock %}
+{% block main %}
+    <section class="author-archive">
+        <div class="container">
+            <h1>
+                {% if curent_category %}
+                    {{ curent_category.name }}
+                {% else %}
+                    Каталог
+                {% endif %}
+            </h1>
+            <div class="wrapper">
+                <ol class="filters">
+                    {% recursetree categories %}
+                        <li>
+                            <label>
+                                <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                                {% if not node.is_leaf_node %}
+                                    <ol class="children">
+                                        <a href="{{ children.get_absolute_url }}">{{ children }}</a>
+                                    </ol>
+                                {% endif %}
+                            </label>
+                        </li>
+                    {% endrecursetree %}
+
+                </ol>
+
+                <ol class="posts">
+                    {% for product in products %}
+                        <li class="post">
+                            <article>
+                                <figure>
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <div class="product-image">
+                                            {% if product.discount > 0 %}
+                                                <span class="discount-tag">{{ product.discount }}% Скидка</span>
+                                            {% endif %}
+                                            <img src="{{ product.productimage_set.first.image.url }}"
+                                                 class="product-thumb" alt="">
+                                            {#                                        <button class="card-btn">Добавить в список желаемого</button>#}
+                                        </div>
+                                    </a>
+                                    <figcaption>
+                                        <h2 class="post-title">
+                                            <div class="product-info">
+                                                <h4 class="product-brand">{{ product.name }}</h4>
+                                                <span class="price">{{ product.price_with_discount }}₽</span><span
+                                                    class="actual-price">{{ product.price }}₽</span>
+                                            </div>
+                                        </h2>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </section>
+{% endblock %}

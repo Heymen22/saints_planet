@@ -1,7 +1,9 @@
-from django.core.management import BaseCommand, CommandError
+from random import randint
+
+from django.core.management import BaseCommand
+
 from my_site.models import *
 from . import _test_data
-from random import randint
 
 
 class Command(BaseCommand):
@@ -15,13 +17,22 @@ class Command(BaseCommand):
         ProductImage.objects.all().delete()
         self.stdout.write('old product images deleted')
 
-        Catalog.objects.bulk_create([Catalog(name=catalog_data['name']) for catalog_data in _test_data.Catalogs])
+        root_catalogs = []
+        for catalog_data in _test_data.Catalogs:
+            if 'parent' in catalog_data:
+                catalog = Catalog(name=catalog_data['name'], parent=root_catalogs[catalog_data['parent']])
+            else:
+                catalog = Catalog(name=catalog_data['name'])
+                root_catalogs.append(catalog)
+            catalog.save()
+
         self.stdout.write('Catalogs created')
+
         Product.objects.bulk_create([Product(catalog_id=_test_data.Catalogs.index(product_data['catalog']) + 1,
                                              name=product_data['name'], sex=product_data['sex'],
                                              stock=product_data['stock'],
                                              description=product_data['description'], price=product_data['price'],
-                                             discount=product_data['discount'], solded=randint(0, 1000)) for
+                                             discount=product_data['discount'], sold=randint(0, 1000)) for
                                      product_data
                                      in _test_data.Products])
         self.stdout.write('Products created')

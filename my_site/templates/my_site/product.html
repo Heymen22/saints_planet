@@ -1,366 +1,49 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset="utf-8"">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>product</title>
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_css %}
+    <link rel="stylesheet" href="{% static 'my_site/css/product.css' %}">
+{% endblock %}
+{% block main %}
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/product.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-
-  </head>
-  <body>
-
-    <nav class="navbar"> <!--навигация-->
-
-      <div class="nav">
-        <img src="img/dark-logo.png" class="brand-logo" alt="">
-        <div class="nav-items">
-            <div class="search">
-                <input type="text" class="search-box" placeholder="Поиск по бренду, товару...">
-                <button class="search-btn">Поиск</button>
-            </div>
-            <a href="#"><img src="img/user.png" alt=""></a>
-            <a href="#"><img src="img/cart.png" alt=""></a>
-        </div>
-      </div>
-      <ul class="links-container">
-          <li class="link-item"><a href="#" class="link">Главная</a></li>
-          <li class="link-item"><a href="#" class="link">Женское</a></li>
-          <li class="link-item"><a href="#" class="link">Мужское</a></li>
-          <li class="link-item"><a href="#" class="link">Дети</a></li>
-          <li class="link-item"><a href="#" class="link">Аксесуары</a></li>
-      </ul>
-
-    </nav>
 
     <section class="product-details">
         <div class="image-slider">
             <div class="product-images">
-                <img src="img/product image 1.png" class="active" alt="">
-                <img src="img/product image 2.png" alt="">
-                <img src="img/product image 3.png" alt="">
-                <img src="img/product image 4.png" alt="">
+                {% for image in product.productimage_set.all %}
+                    <img src="{{ image.image.url }}" class="
+                    {% if forloop..first %}
+                        active
+                    {% endif %}
+                " alt="">
+                {% endfor %}
             </div>
         </div>
         <div class="details">
-          <h2 class="product-brand">Celvin Klein</h2>
-        <p class="product-short-des">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-        <span class="product-price">3500₽</span>
-        <span class="product-actual-price">7000₽</span>
-        <span class="product-discount">( 50% скидка )</span>
+            <h2 class="product-brand">{{ product.name }}</h2>
+            <p class="product-short-des">{{ product.description }}</p>
+            <span class="product-price">{{ product.price_with_discount }}₽</span>
+            <span class="product-actual-price">{{ product.price }}₽</span>
+            {% if product.discount > 0 %}
+                <span class="product-discount">( {{ product.discount }}% скидка )</span>
+            {% endif %}
+            <p class="product-sub-heading">выберите размер</p>
 
-        <p class="product-sub-heading">выберите размер</p>
+            <input type="radio" name="size" value="s" checked hidden id="s-size">
+            <label for="s-size" class="size-radio-btn check">s</label>
+            <input type="radio" name="size" value="m" hidden id="m-size">
+            <label for="m-size" class="size-radio-btn">m</label>
+            <input type="radio" name="size" value="l" hidden id="l-size">
+            <label for="l-size" class="size-radio-btn">l</label>
+            <input type="radio" name="size" value="xl" hidden id="xl-size">
+            <label for="xl-size" class="size-radio-btn">xl</label>
+            <input type="radio" name="size" value="xxl" hidden id="xxl-size">
+            <label for="xxl-size" class="size-radio-btn">xxl</label>
 
-        <input type="radio" name="size" value="s" checked hidden id="s-size">
-        <label for="s-size" class="size-radio-btn check">s</label>
-        <input type="radio" name="size" value="m" hidden id="m-size">
-        <label for="m-size" class="size-radio-btn">m</label>
-        <input type="radio" name="size" value="l" hidden id="l-size">
-        <label for="l-size" class="size-radio-btn">l</label>
-        <input type="radio" name="size" value="xl" hidden id="xl-size">
-        <label for="xl-size" class="size-radio-btn">xl</label>
-        <input type="radio" name="size" value="xxl" hidden id="xxl-size">
-        <label for="xxl-size" class="size-radio-btn">xxl</label>
-
-        <button class="btn cart-btn">добавить в корзину</button>
-        <button class="btn">добавить в список Желаемого</button>
+            <button class="btn cart-btn">добавить в корзину</button>
         </div>
     </section>
 
-    <section class="product"> <!-- cards container -->
-      <!-- СЛАЙДЕР -->
-
-      <h2 class="product-category">Рубашки</h2>
-      <!-- Кнопки слайдеры -->
-        <button class="pre-btn"><img src="img/arrow.png" alt=""></button>
-        <button class="nxt-btn"><img src="img/arrow.png" alt=""></button>
-      <div class="product-container">
-
-        <div class="product-card"> <!-- 1я карта -->
-            <div class="product-image">
-                <span class="discount-tag">50% Скидка</span>
-                <img src="img/card1.png" class="product-thumb" alt="">
-                <button class="card-btn">Добавить в список желаемого</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">брэнд</h2>
-                <p class="product-short-des">короткая реплика о ткани..</p>
-                <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-            </div>
-        </div>
-
-        <div class="product-card"><!-- 2я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card2.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 3я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card3.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 4я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card4.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 5я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card5.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 6я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card6.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 7я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card7.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-
-        <div class="product-card"><!-- 8я карта -->
-          <div class="product-image">
-              <span class="discount-tag">50% Скидка</span>
-              <img src="img/card8.png" class="product-thumb" alt="">
-              <button class="card-btn">Добавить в список желаемого</button>
-          </div>
-          <div class="product-info">
-              <h2 class="product-brand">брэнд</h2>
-              <p class="product-short-des">короткая реплика о ткани..</p>
-              <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-          </div>
-      </div>
-    </div>
-      </div>
-
-    </section>
-
-<section class="product"> <!-- cards container -->
-  <!-- СЛАЙДЕР -->
-
-  <h2 class="product-category"> Обувь </h2>
-  <!-- Кнопки слайдеры -->
-    <button class="pre-btn"><img src="img/arrow.png" alt=""></button>
-    <button class="nxt-btn"><img src="img/arrow.png" alt=""></button>
-  <div class="product-container">
-
-    <div class="product-card"> <!-- 1я карта -->
-        <div class="product-image">
-            <span class="discount-tag">50% Скидка</span>
-            <img src="img/card1.png" class="product-thumb" alt="">
-            <button class="card-btn">Добавить в список желаемого</button>
-        </div>
-        <div class="product-info">
-            <h2 class="product-brand">брэнд</h2>
-            <p class="product-short-des">короткая реплика о ткани..</p>
-            <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-        </div>
-    </div>
-
-    <div class="product-card"><!-- 2я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card2.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 3я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card3.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 4я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card4.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 5я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card5.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 6я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card6.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 7я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card7.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-
-    <div class="product-card"><!-- 8я карта -->
-      <div class="product-image">
-          <span class="discount-tag">50% Скидка</span>
-          <img src="img/card8.png" class="product-thumb" alt="">
-          <button class="card-btn">Добавить в список желаемого</button>
-      </div>
-      <div class="product-info">
-          <h2 class="product-brand">брэнд</h2>
-          <p class="product-short-des">короткая реплика о ткани..</p>
-          <span class="price">2000₽</span><span class="actual-price">4000₽</span>
-      </div>
-  </div>
-</div>
-  </div>
-
-  </section>
-
-    <footer>
-      <div class="footer-content">
-          <img src="img/light-logo.png" class="logo" alt="">
-          <div class="footer-ul-container">
-              <ul class="category">
-                  <li class="category-title">Мужское</li>
-                  <li><a href="#" class="footer-link">футболки</a></li>
-                  <li><a href="#" class="footer-link">толстовки</a></li>
-                  <li><a href="#" class="footer-link">рубашки</a></li>
-                  <li><a href="#" class="footer-link">джинсы</a></li>
-                  <li><a href="#" class="footer-link">брюки</a></li>
-                  <li><a href="#" class="footer-link">обувь</a></li>
-                  <li><a href="#" class="footer-link">Кэжуал</a></li>
-                  <li><a href="#" class="footer-link">официальная одежда</a></li>
-                  <li><a href="#" class="footer-link">спорт</a></li>
-                  <li><a href="#" class="footer-link">часы</a></li>
-              </ul>
-              <ul class="category">
-                  <li class="category-title">Женское</li>
-                  <li><a href="#" class="footer-link">футболки</a></li>
-                  <li><a href="#" class="footer-link">толстовки</a></li>
-                  <li><a href="#" class="footer-link">рубашки</a></li>
-                  <li><a href="#" class="footer-link">джинсы</a></li>
-                  <li><a href="#" class="footer-link">брюки</a></li>
-                  <li><a href="#" class="footer-link">обувь</a></li>
-                  <li><a href="#" class="footer-link">Кэжуал</a></li>
-                  <li><a href="#" class="footer-link">официальная одежда</a></li>
-                  <li><a href="#" class="footer-link">спорт</a></li>
-                  <li><a href="#" class="footer-link">часы</a></li>
-              </ul>
-          </div>
-      </div>
-
-      <!-- предыдущие элементы -->
-      <p class="footer-title">О КОМПАНИИ</p>
-      <p class="info">Дом - это наши клиенты. Ваше время, чтобы доставить их ей в любое время, но вариант только спросить, который создает структуру и большую часть настоящего, мастер-строитель миниатюр отвергает это оригинальное взятие других мужчин. Эти инструменты ненавидят больше всего, что удовольствие от танца связанного тела! Когда ошибка сама по себе перекусывает время в реальном мире, нуждается в наших способах! Долги по его получению никто не откроет, кроме как, и донесет на службы. Закуски, которые упражняются, когда вина очаровывает город, различие во времени, желание присутствующих, кроме как в качестве постоянного, принимая легкое удовольствие от бегства от этого удовольствия для него. Аспериорес, родился! Является ли первоначальный инцидент таким, чтобы понравиться всем, поэтому один из них?</p>
-      <p class="info">Email поддержки - help@poderjka.com</p>
-      <p class="info">телефон - +7 999 212 85 06</p>
-      <div class="footer-social-container">
-          <div>
-              <a href="#" class="social-link">условия и услуги</a>
-              <a href="#" class="social-link">Конфиденциальность</a>
-          </div>
-          <div>
-              <a href="#" class="social-link">instagram</a>
-              <a href="#" class="social-link">facebook</a>
-              <a href="#" class="social-link">twitter</a>
-          </div>
-      </div>
-      <p class="footer-credit">Интернет-магазин лучшей одежды</p>
-
-  </footer>
-
-
-
-    </script>
-<script src="js/home.js"></script>
-<script src="js/product.js"></script>
-  </body>
-</html>
+{% endblock %}
+{% block additional_js %}
+    <script src="{% static 'my_site/js/product.js' %}"></script>
+{% endblock %}
